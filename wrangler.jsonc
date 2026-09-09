@@ -14,12 +14,10 @@
     // Serve everything from the repository root.
     "directory": "./",
 
-    // "none" serves each path exactly as written, so /services.html is
-    // returned directly with a 200. Cloudflare's default would instead
-    // redirect /services.html to /services, which put a wasted redirect
-    // in front of every link on the site and made the canonical tags
-    // point at URLs that redirect.
-    "html_handling": "none",
+    // html_handling is deliberately left at its default. Setting it to
+    // "none" stops /services.html being redirected to /services, but it
+    // also disables index.html resolution, which makes the site root
+    // return a 404 — so the redirect is the lesser cost.
 
     // Serve our designed 404.html for unknown paths. Without this,
     // Cloudflare returns a 404 with a completely empty body — visitors
