@@ -1,0 +1,29 @@
+{
+  // Cloudflare Workers configuration for prakriticomputer.com.np
+  //
+  // This site is static files only — there is no server-side code, so the
+  // Worker just serves the assets. Cloudflare reads this file on every
+  // deploy triggered by a push to GitHub.
+  //
+  // "name" must match the existing Worker exactly, or Cloudflare would
+  // deploy to a different project.
+  "name": "prakriti-computer-website",
+  "compatibility_date": "2026-09-09",
+
+  "assets": {
+    // Serve everything from the repository root.
+    "directory": "./",
+
+    // "none" serves each path exactly as written, so /services.html is
+    // returned directly with a 200. Cloudflare's default would instead
+    // redirect /services.html to /services, which put a wasted redirect
+    // in front of every link on the site and made the canonical tags
+    // point at URLs that redirect.
+    "html_handling": "none",
+
+    // Serve our designed 404.html for unknown paths. Without this,
+    // Cloudflare returns a 404 with a completely empty body — visitors
+    // who mistype an address get a blank white page.
+    "not_found_handling": "404-page"
+  }
+}
