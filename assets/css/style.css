@@ -47,6 +47,20 @@
   --accent-soft: #e6f6ea;
   --ring: rgba(33, 131, 57, 0.3);
 
+  /* Bands — the hero, page headers, CTA strip and footer.
+     These used to be solid dark green. They are now light green with dark
+     text, matching the Prakriti ERP. Defining them as tokens means the dark
+     theme can swap them back to deep green without touching any component. */
+  --band: #f2fbf4;
+  --band-2: #dcf2e3;
+  --band-text: #102917;
+  --band-muted: #47654f;
+  --band-line: rgba(16, 65, 33, 0.06);
+  --band-glow-a: rgba(52, 180, 85, 0.22);
+  --band-glow-b: rgba(20, 184, 166, 0.14);
+  --topbar-bg: #218339;
+  --topbar-fg: #e8f7ec;
+
   /* Elevation */
   --shadow-xs: 0 1px 2px rgba(10, 41, 20, 0.06);
   --shadow-sm: 0 2px 8px rgba(10, 41, 20, 0.08);
@@ -84,8 +98,18 @@
   --text-faint: #7fa189;
   --brand: #0d2a15;
   --accent: var(--green-400);
-  --accent-soft: rgba(62, 207, 142, 0.14);
-  --ring: rgba(62, 207, 142, 0.38);
+  --accent-soft: rgba(93, 208, 122, 0.14);
+  --ring: rgba(93, 208, 122, 0.38);
+
+  --band: #071f0f;
+  --band-2: #0e3520;
+  --band-text: #e8f5ea;
+  --band-muted: #a6c4ae;
+  --band-line: rgba(255, 255, 255, 0.045);
+  --band-glow-a: rgba(52, 180, 85, 0.26);
+  --band-glow-b: rgba(20, 184, 166, 0.18);
+  --topbar-bg: #04150a;
+  --topbar-fg: #a6c4ae;
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.45);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.5);
@@ -258,20 +282,6 @@ p { text-wrap: pretty; }
 }
 .btn--ghost:hover { --btn-bd: var(--accent); --btn-fg: var(--accent); box-shadow: var(--shadow-sm); }
 
-.btn--light {
-  --btn-bg: #fff;
-  --btn-fg: var(--forest-900);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
-}
-
-.btn--outline-light {
-  --btn-bg: transparent;
-  --btn-fg: #fff;
-  --btn-bd: rgba(255, 255, 255, 0.45);
-  box-shadow: none;
-}
-.btn--outline-light:hover { --btn-bd: #fff; background: rgba(255, 255, 255, 0.1); }
-
 .btn--sm { padding: 0.6rem 1.1rem; font-size: 0.875rem; }
 .btn--block { width: 100%; }
 
@@ -286,8 +296,8 @@ p { text-wrap: pretty; }
    5. Header & navigation
    -------------------------------------------------------------------------- */
 .topbar {
-  background: var(--forest-900);
-  color: #cfe0ef;
+  background: var(--topbar-bg);
+  color: var(--topbar-fg);
   font-size: 0.82rem;
 }
 .topbar__inner {
@@ -308,7 +318,8 @@ p { text-wrap: pretty; }
   flex-wrap: wrap;
 }
 .topbar a { display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.15s; }
-.topbar a:hover { color: var(--green-400); }
+.topbar a:hover { color: #fff; }
+[data-theme="dark"] .topbar a:hover { color: var(--green-400); }
 .topbar svg { width: 14px; height: 14px; opacity: 0.85; }
 .topbar__socials { display: flex; gap: 0.35rem; }
 .topbar__socials a {
@@ -317,7 +328,7 @@ p { text-wrap: pretty; }
   border-radius: var(--radius-full);
   background: rgba(255, 255, 255, 0.08);
 }
-.topbar__socials a:hover { background: var(--accent); color: #fff; }
+.topbar__socials a:hover { background: rgba(255, 255, 255, 0.22); color: #fff; }
 .topbar__socials svg { width: 14px; height: 14px; opacity: 1; }
 
 @media (max-width: 760px) {
@@ -459,8 +470,8 @@ p { text-wrap: pretty; }
 .hero {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(155deg, var(--forest-900) 0%, var(--forest-800) 45%, var(--forest-700) 100%);
-  color: #fff;
+  background: linear-gradient(155deg, var(--band) 0%, var(--band-2) 100%);
+  color: var(--band-text);
   overflow: hidden;
   padding-block: clamp(3.5rem, 8vw, 6rem) clamp(4rem, 9vw, 7rem);
 }
@@ -474,20 +485,20 @@ p { text-wrap: pretty; }
 .hero::before {
   width: 46rem; height: 46rem;
   top: -22rem; right: -14rem;
-  background: radial-gradient(circle, rgba(22, 179, 100, 0.28), transparent 62%);
+  background: radial-gradient(circle, var(--band-glow-a), transparent 62%);
 }
 .hero::after {
   width: 34rem; height: 34rem;
   bottom: -18rem; left: -12rem;
-  background: radial-gradient(circle, rgba(20, 184, 166, 0.2), transparent 65%);
+  background: radial-gradient(circle, var(--band-glow-b), transparent 65%);
 }
 .hero__grid {
   position: absolute;
   inset: 0;
   z-index: -1;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    linear-gradient(var(--band-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--band-line) 1px, transparent 1px);
   background-size: 62px 62px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 20%, transparent 78%);
   -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 20%, transparent 78%);
@@ -509,16 +520,17 @@ p { text-wrap: pretty; }
   gap: 0.55rem;
   padding: 0.42rem 0.95rem 0.42rem 0.45rem;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.09);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-xs);
   font-size: 0.83rem;
   font-weight: 550;
-  color: #dbeafe;
+  color: var(--band-text);
   margin-bottom: 1.5rem;
 }
 .hero__badge b {
-  background: var(--green-500);
-  color: #04231a;
+  background: var(--accent);
+  color: #fff;
   padding: 0.18rem 0.6rem;
   border-radius: var(--radius-full);
   font-size: 0.72rem;
@@ -527,9 +539,9 @@ p { text-wrap: pretty; }
   text-transform: uppercase;
 }
 
-.hero h1 { color: #fff; }
+.hero h1 { color: var(--band-text); }
 .hero h1 .accent {
-  background: linear-gradient(100deg, var(--green-400), #7ee2b8);
+  background: linear-gradient(100deg, var(--green-700), var(--green-500));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -537,7 +549,7 @@ p { text-wrap: pretty; }
 .hero__text {
   margin-top: 1.25rem;
   font-size: clamp(1.02rem, 1.7vw, 1.16rem);
-  color: #c3d6e8;
+  color: var(--band-muted);
   max-width: 34rem;
 }
 
@@ -554,14 +566,14 @@ p { text-wrap: pretty; }
   align-items: center;
   gap: 0.5rem;
   font-size: 0.925rem;
-  color: #d7e6f2;
+  color: var(--band-text);
 }
-.hero__points svg { width: 18px; height: 18px; color: var(--green-400); flex: none; }
+.hero__points svg { width: 18px; height: 18px; color: var(--accent); flex: none; }
 
 /* Hero call card */
 .call-card {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: clamp(1.5rem, 3vw, 2rem);
   backdrop-filter: blur(14px);
@@ -572,14 +584,14 @@ p { text-wrap: pretty; }
   font-family: var(--font-head);
   font-size: 1.06rem;
   font-weight: 650;
-  color: #fff;
+  color: var(--text);
   display: flex;
   align-items: center;
   gap: 0.55rem;
   margin-bottom: 0.35rem;
 }
-.call-card__title svg { width: 20px; height: 20px; color: var(--green-400); flex: none; }
-.call-card__sub { font-size: 0.875rem; color: #a9c2d6; margin-bottom: 1.35rem; }
+.call-card__title svg { width: 20px; height: 20px; color: var(--accent); flex: none; }
+.call-card__sub { font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1.35rem; }
 
 .phone-list { display: grid; gap: 0.6rem; }
 .phone-item {
@@ -588,13 +600,13 @@ p { text-wrap: pretty; }
   gap: 0.85rem;
   padding: 0.8rem 1rem;
   border-radius: var(--radius);
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
   transition: background-color 0.18s, border-color 0.18s, transform 0.18s var(--ease);
 }
 .phone-item:hover {
-  background: rgba(22, 179, 100, 0.18);
-  border-color: rgba(62, 207, 142, 0.55);
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--border));
   transform: translateX(4px);
 }
 .phone-item__icon {
@@ -602,8 +614,8 @@ p { text-wrap: pretty; }
   flex: none;
   border-radius: 11px;
   display: grid; place-items: center;
-  background: rgba(62, 207, 142, 0.16);
-  color: var(--green-400);
+  background: var(--accent-soft);
+  color: var(--accent);
 }
 .phone-item__icon svg { width: 18px; height: 18px; }
 .phone-item__meta { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
@@ -611,27 +623,27 @@ p { text-wrap: pretty; }
   font-size: 0.72rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: #93b0c7;
+  color: var(--text-faint);
   font-weight: 600;
 }
 .phone-item__num {
   font-family: var(--font-head);
   font-size: 1.06rem;
   font-weight: 650;
-  color: #fff;
+  color: var(--text);
   letter-spacing: 0.01em;
 }
 .call-card__note {
   margin-top: 1.25rem;
   padding-top: 1.1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  border-top: 1px solid var(--border);
   font-size: 0.83rem;
-  color: #a9c2d6;
+  color: var(--text-muted);
   display: flex;
   align-items: flex-start;
   gap: 0.55rem;
 }
-.call-card__note svg { width: 16px; height: 16px; flex: none; margin-top: 3px; color: var(--green-400); }
+.call-card__note svg { width: 16px; height: 16px; flex: none; margin-top: 3px; color: var(--accent); }
 
 /* --------------------------------------------------------------------------
    7. Stat strip
@@ -742,8 +754,8 @@ p { text-wrap: pretty; }
   width: 44px; height: 44px;
   border-radius: 13px;
   display: grid; place-items: center;
-  background: var(--brand);
-  color: var(--green-400);
+  background: var(--accent);
+  color: #fff;
   font-family: var(--font-head);
   font-weight: 700;
   font-size: 0.98rem;
@@ -758,8 +770,8 @@ p { text-wrap: pretty; }
 .page-head {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(150deg, var(--forest-900), var(--forest-700));
-  color: #fff;
+  background: linear-gradient(150deg, var(--band), var(--band-2));
+  color: var(--band-text);
   padding-block: clamp(2.75rem, 6vw, 4.5rem);
   overflow: hidden;
 }
@@ -770,10 +782,10 @@ p { text-wrap: pretty; }
   width: 38rem; height: 38rem;
   top: -20rem; right: -10rem;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(22, 179, 100, 0.25), transparent 65%);
+  background: radial-gradient(circle, var(--band-glow-a), transparent 65%);
 }
-.page-head h1 { color: #fff; font-size: clamp(1.9rem, 4.4vw, 2.9rem); }
-.page-head p { color: #c3d6e8; margin-top: 0.85rem; max-width: 42rem; }
+.page-head h1 { color: var(--band-text); font-size: clamp(1.9rem, 4.4vw, 2.9rem); }
+.page-head p { color: var(--band-muted); margin-top: 0.85rem; max-width: 42rem; }
 
 .crumbs {
   display: flex;
@@ -783,11 +795,11 @@ p { text-wrap: pretty; }
   padding: 0;
   margin: 0 0 1rem;
   font-size: 0.85rem;
-  color: #93b0c7;
+  color: var(--text-faint);
   flex-wrap: wrap;
 }
-.crumbs a:hover { color: var(--green-400); }
-.crumbs li[aria-current] { color: #fff; font-weight: 550; }
+.crumbs a:hover { color: var(--accent); }
+.crumbs li[aria-current] { color: var(--band-text); font-weight: 550; }
 .crumbs .sep { opacity: 0.5; }
 
 /* --------------------------------------------------------------------------
@@ -803,9 +815,10 @@ p { text-wrap: pretty; }
   position: relative;
   border-radius: var(--radius-lg);
   padding: clamp(1.6rem, 3.5vw, 2.5rem);
-  background: linear-gradient(150deg, var(--forest-800), var(--forest-700));
-  color: #fff;
-  box-shadow: var(--shadow-md);
+  background: linear-gradient(150deg, var(--band), var(--band-2));
+  border: 1px solid var(--border);
+  color: var(--band-text);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 .split__panel::before {
@@ -814,13 +827,13 @@ p { text-wrap: pretty; }
   width: 22rem; height: 22rem;
   top: -12rem; right: -8rem;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(22, 179, 100, 0.3), transparent 65%);
+  background: radial-gradient(circle, var(--band-glow-a), transparent 65%);
 }
 .panel-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.05rem; position: relative; }
 .panel-list li { display: flex; gap: 0.85rem; align-items: flex-start; }
-.panel-list svg { width: 22px; height: 22px; flex: none; color: var(--green-400); margin-top: 3px; }
+.panel-list svg { width: 22px; height: 22px; flex: none; color: var(--accent); margin-top: 3px; }
 .panel-list b { display: block; font-family: var(--font-head); font-size: 1rem; font-weight: 650; }
-.panel-list span { font-size: 0.9rem; color: #b9cfe0; }
+.panel-list span { font-size: 0.9rem; color: var(--band-muted); }
 
 .check-list { list-style: none; padding: 0; margin: 1.75rem 0 0; display: grid; gap: 0.85rem; }
 .check-list li { display: flex; gap: 0.75rem; align-items: flex-start; color: var(--text-muted); }
@@ -997,6 +1010,29 @@ p { text-wrap: pretty; }
 .map-embed iframe { width: 100%; height: 420px; border: 0; }
 
 /* --------------------------------------------------------------------------
+   12b. Shopfront banner
+   The signboard artwork, cropped out of the design mockup.
+   -------------------------------------------------------------------------- */
+.banner {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  background: var(--surface);
+  line-height: 0;
+  max-width: 62rem;
+  margin-inline: auto;
+}
+.banner img { width: 100%; height: auto; }
+
+.banner-caption {
+  text-align: center;
+  margin-top: 1.1rem;
+  font-size: 0.875rem;
+  color: var(--text-faint);
+}
+
+/* --------------------------------------------------------------------------
    13. FAQ
    -------------------------------------------------------------------------- */
 .faq { display: grid; gap: 0.85rem; max-width: 50rem; margin-inline: auto; }
@@ -1044,8 +1080,9 @@ p { text-wrap: pretty; }
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(120deg, var(--forest-900), var(--forest-700) 65%, var(--green-600) 200%);
-  color: #fff;
+  background: linear-gradient(120deg, var(--band), var(--band-2) 70%, var(--accent-soft) 130%);
+  border: 1px solid var(--border);
+  color: var(--band-text);
   border-radius: var(--radius-lg);
   padding: clamp(2.25rem, 5vw, 3.5rem);
   text-align: center;
@@ -1057,22 +1094,23 @@ p { text-wrap: pretty; }
   z-index: -1;
   inset: 0;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(var(--band-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--band-line) 1px, transparent 1px);
   background-size: 48px 48px;
   mask-image: radial-gradient(ellipse 70% 90% at 50% 50%, #000, transparent 75%);
   -webkit-mask-image: radial-gradient(ellipse 70% 90% at 50% 50%, #000, transparent 75%);
 }
-.cta-band h2 { color: #fff; }
-.cta-band p { color: #c3d6e8; margin-top: 0.85rem; max-width: 40rem; margin-inline: auto; }
+.cta-band h2 { color: var(--band-text); }
+.cta-band p { color: var(--band-muted); margin-top: 0.85rem; max-width: 40rem; margin-inline: auto; }
 .cta-band .btn-row { justify-content: center; }
 
 /* --------------------------------------------------------------------------
    15. Footer
    -------------------------------------------------------------------------- */
 .site-footer {
-  background: var(--forest-900);
-  color: #a9c2d6;
+  background: var(--band);
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
   padding-top: clamp(3rem, 6vw, 4.5rem);
 }
 .footer__grid {
@@ -1084,8 +1122,8 @@ p { text-wrap: pretty; }
 @media (max-width: 900px) { .footer__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .footer__grid { grid-template-columns: 1fr; } }
 
-.site-footer .brand__name { color: #fff; }
-.site-footer .brand__tag { color: #6f8ba4; }
+.site-footer .brand__name { color: var(--text); }
+.site-footer .brand__tag { color: var(--text-faint); }
 .footer__about { font-size: 0.92rem; margin-top: 1.1rem; max-width: 24rem; line-height: 1.7; }
 
 .footer__title {
@@ -1094,26 +1132,26 @@ p { text-wrap: pretty; }
   font-weight: 700;
   letter-spacing: 0.13em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--text);
   margin-bottom: 1.15rem;
 }
 .footer__links { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.65rem; }
 .footer__links a { font-size: 0.925rem; transition: color 0.15s, padding-left 0.18s var(--ease); }
-.footer__links a:hover { color: var(--green-400); padding-left: 5px; }
+.footer__links a:hover { color: var(--accent); padding-left: 5px; }
 
 .footer__contact { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.9rem; }
 .footer__contact li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 0.92rem; }
-.footer__contact svg { width: 17px; height: 17px; flex: none; color: var(--green-400); margin-top: 4px; }
-.footer__contact a:hover { color: var(--green-400); }
+.footer__contact svg { width: 17px; height: 17px; flex: none; color: var(--accent); margin-top: 4px; }
+.footer__contact a:hover { color: var(--accent); }
 
 .socials { display: flex; gap: 0.6rem; margin-top: 1.5rem; flex-wrap: wrap; }
 .social {
   width: 42px; height: 42px;
   display: grid; place-items: center;
   border-radius: 13px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #d7e6f2;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
   transition: transform 0.2s var(--ease), background-color 0.2s, color 0.2s, border-color 0.2s;
 }
 .social svg { width: 19px; height: 19px; }
@@ -1124,7 +1162,7 @@ p { text-wrap: pretty; }
 .social--wa:hover { background: #25d366; border-color: #25d366; }
 
 .footer__bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: 1px solid var(--border);
   padding-block: 1.5rem;
   display: flex;
   align-items: center;
@@ -1133,9 +1171,9 @@ p { text-wrap: pretty; }
   flex-wrap: wrap;
   font-size: 0.865rem;
 }
-.footer__bottom p { color: #7f99ae; }
+.footer__bottom p { color: var(--text-faint); }
 .footer__bottom nav { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-.footer__bottom a:hover { color: var(--green-400); }
+.footer__bottom a:hover { color: var(--accent); }
 
 /* --------------------------------------------------------------------------
    16. Floating buttons

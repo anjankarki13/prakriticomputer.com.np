@@ -127,15 +127,18 @@ The brand assets in `assets/img/` are all generated from your round logo
 | `favicon-32.png` / `-64.png`    | Browser tab icon                                       |
 | `favicon-180.png`               | Icon when someone saves the site to a phone home screen |
 | `og-image.png`                  | The preview card shown when the link is shared         |
+| `banner.jpg`                    | Shopfront signboard, shown on the home page            |
 
 The corners are transparent because the original JPG is a square with white corners, which would
 have shown as a white box against the dark green header. If you ever get a vector (SVG or AI)
 version of the logo, that would be sharper still — send it and it can be swapped in.
 
-The signboard image is a design mockup — a photo of a sign in a room, complete with background
-and glare — so it is not used on the site directly. Its content is, though: the tagline
-"we pick, we fix, we deliver" is in the hero, and "complete IT related sales and service"
-informs the wording throughout.
+`banner.jpg` is the signboard artwork, cropped out of the design mockup. The original was a
+photo of the sign mounted in a room, with the wall, window and glare around it; the crop keeps
+just the sign panel. It appears in the "Look for this sign" section on the home page.
+
+Its wording is used elsewhere too: the tagline "we pick, we fix, we deliver" is in the hero, and
+"complete IT related sales and service" informs the copy throughout.
 
 ## Editing the design
 
@@ -143,7 +146,7 @@ All colours, spacing and fonts live as variables at the top of `assets/css/style
 `:root`. The site is green throughout, built from two scales:
 
 ```css
-/* Deep greens — hero, footer, page headers, panels */
+/* Deep greens — used by the dark theme and a few solid chips */
 --forest-900: #0a2914;
 --forest-800: #104121;
 --forest-700: #165a2d;
@@ -156,9 +159,23 @@ All colours, spacing and fonts live as variables at the top of `assets/css/style
 --green-400: #5dd07a;   /* dark theme accent  */
 ```
 
-Change `--forest-*` to restyle the dark areas, `--green-*` for the accents. Keep `--green-700`
-as the light-theme accent if you change it: lighter greens drop below the 4.5:1 contrast ratio
-needed for white button text to stay readable.
+Keep `--green-700` as the light-theme accent if you change it: lighter greens drop below the
+4.5:1 contrast ratio needed for white button text to stay readable. `--green-500` is the green
+taken from your logo.
+
+The hero, page headers, CTA strip and footer are called **bands**, and they are controlled by
+their own set of tokens so the whole site can be made lighter or darker in one place:
+
+```css
+--band:       #f2fbf4;   /* band background, top of the gradient */
+--band-2:     #dcf2e3;   /* band background, bottom of the gradient */
+--band-text:  #102917;   /* headings on a band */
+--band-muted: #47654f;   /* body text on a band */
+--topbar-bg:  #218339;   /* the thin green strip above the header */
+```
+
+To make the bands deeper green, lower the lightness of `--band` and `--band-2` and switch
+`--band-text` to a near-white. The dark theme already does exactly that further down the file.
 
 The site has a light and dark theme; the toggle is the sun/moon button in the header, and the
 visitor's choice is remembered in their browser.
