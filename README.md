@@ -40,17 +40,18 @@ Search and replace across all `.html` files:
 
 In VS Code: `Ctrl+Shift+F`, type the old link, `Ctrl+Shift+H` to replace in all files.
 
-### 2. Shop address
+### 2. Shop address — mostly done
 
-The address currently reads **"Jhapa, Koshi Province, Nepal"**. Replace it with your exact
-street / tole / ward. It appears in the footer of every page, in the contact page details,
-and in the `address` block of the structured data in `index.html`.
+The address now reads **"Kakarvitta, Jhapa, Nepal"**, taken from the logo. If you want to add
+the exact tole, ward or landmark, it appears in the footer of every page, in the contact page
+details, and in the `address` block of the structured data in `index.html`.
 
 ### 3. Map location
 
-In `contact.html`, find the `<!-- TODO -->` comment above the map. Open Google Maps, search for
-your shop, choose **Share → Embed a map**, copy the `<iframe>` and paste it in place of the
-existing one.
+The map currently searches Google Maps for "Prakriti Computer, Kakarvitta" — which may or may
+not land on your shop. To pin it exactly: in `contact.html` find the `<!-- TODO -->` comment
+above the map, then open Google Maps, search for your shop, choose **Share → Embed a map**,
+and paste the `<iframe>` in place of the existing one.
 
 ### 4. Email address
 
@@ -61,7 +62,7 @@ or replace it everywhere with the address you actually use (e.g. your Gmail).
 
 Written as reasonable defaults — correct them if they are wrong:
 
-- **"Since 2010" / "15+ years"** on the home page hero and stat strip
+- **"15+ years serving the community"** in the stat strip (`index.html`, `about.html`)
 - **"5,000+ devices repaired"** in the stat strip (`index.html`, `about.html`)
 - **Opening hours** — Sunday to Friday, 9 AM to 7 PM, Saturday closed. These appear in the hero
   card, the footer of every page, the contact page table, the FAQ, and the structured data.
@@ -124,6 +125,27 @@ and change one line in `contact.html`:
 Removing `id="enquiry-form"` disables the mailto script and lets Formspree handle the submission.
 
 ---
+
+## Logo and images
+
+The brand assets in `assets/img/` are all generated from your round logo
+(`Prakriti Computer Round Logo.jpg`):
+
+| File                            | Used for                                              |
+| ------------------------------- | ----------------------------------------------------- |
+| `logo.png`                      | Header and footer, 512px, circular with transparent corners |
+| `favicon-32.png` / `-64.png`    | Browser tab icon                                       |
+| `favicon-180.png`               | Icon when someone saves the site to a phone home screen |
+| `og-image.png`                  | The preview card shown when the link is shared         |
+
+The corners are transparent because the original JPG is a square with white corners, which would
+have shown as a white box against the dark green header. If you ever get a vector (SVG or AI)
+version of the logo, that would be sharper still — send it and it can be swapped in.
+
+The signboard image is a design mockup — a photo of a sign in a room, complete with background
+and glare — so it is not used on the site directly. Its content is, though: the tagline
+"we pick, we fix, we deliver" is in the hero, and "complete IT related sales and service"
+informs the wording throughout.
 
 ## Editing the design
 

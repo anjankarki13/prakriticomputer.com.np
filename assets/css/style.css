@@ -22,36 +22,36 @@
      green-*   vivid greens for accents (buttons, links, icons)
      --green-700 is the one used for text and buttons on white: it clears
      the WCAG AA 4.5:1 contrast ratio, which --green-600 does not. */
-  --forest-900: #04251a;
-  --forest-800: #073a28;
-  --forest-700: #0a5238;
-  --forest-600: #0e6b4a;
-  --green-700: #0b854a;
-  --green-600: #0f9d58;
-  --green-500: #16b364;
-  --green-400: #3ecf8e;
+  --forest-900: #0a2914;
+  --forest-800: #104121;
+  --forest-700: #165a2d;
+  --forest-600: #1d7239;
+  --green-700: #218339;
+  --green-600: #2a9e45;
+  --green-500: #34b455;
+  --green-400: #5dd07a;
 
   /* Semantic — light theme */
   --bg: #ffffff;
-  --bg-soft: #f3faf6;
-  --bg-sunken: #e9f4ee;
+  --bg-soft: #f4faf5;
+  --bg-sunken: #eaf5ec;
   --surface: #ffffff;
-  --surface-2: #f7fcf9;
-  --border: #dcebe3;
-  --border-strong: #b9d8c8;
-  --text: #0c2a1e;
-  --text-muted: #4a6b5c;
-  --text-faint: #789987;
+  --surface-2: #f8fcf9;
+  --border: #deebe0;
+  --border-strong: #bcd8c1;
+  --text: #102917;
+  --text-muted: #4d6a55;
+  --text-faint: #7d9884;
   --brand: var(--forest-800);
   --accent: var(--green-700);
-  --accent-soft: #e3f6ec;
-  --ring: rgba(11, 133, 74, 0.3);
+  --accent-soft: #e6f6ea;
+  --ring: rgba(33, 131, 57, 0.3);
 
   /* Elevation */
-  --shadow-xs: 0 1px 2px rgba(4, 37, 26, 0.06);
-  --shadow-sm: 0 2px 8px rgba(4, 37, 26, 0.08);
-  --shadow-md: 0 8px 24px rgba(4, 37, 26, 0.1);
-  --shadow-lg: 0 20px 48px rgba(4, 37, 26, 0.16);
+  --shadow-xs: 0 1px 2px rgba(10, 41, 20, 0.06);
+  --shadow-sm: 0 2px 8px rgba(10, 41, 20, 0.08);
+  --shadow-md: 0 8px 24px rgba(10, 41, 20, 0.1);
+  --shadow-lg: 0 20px 48px rgba(10, 41, 20, 0.16);
 
   /* Shape & rhythm */
   --radius-sm: 8px;
@@ -72,17 +72,17 @@
 
 /* Dark theme — set by data-theme="dark" on <html> (see assets/js/main.js) */
 [data-theme="dark"] {
-  --bg: #04180f;
-  --bg-soft: #072216;
-  --bg-sunken: #03140c;
-  --surface: #0a2718;
-  --surface-2: #0e3220;
-  --border: #17452e;
-  --border-strong: #235e41;
-  --text: #e6f5ec;
-  --text-muted: #a2c4b1;
-  --text-faint: #7ba38c;
-  --brand: #0a2718;
+  --bg: #061a0c;
+  --bg-soft: #0a2412;
+  --bg-sunken: #04150a;
+  --surface: #0d2a15;
+  --surface-2: #12351c;
+  --border: #1c4827;
+  --border-strong: #296438;
+  --text: #e8f5ea;
+  --text-muted: #a6c4ae;
+  --text-faint: #7fa189;
+  --brand: #0d2a15;
   --accent: var(--green-400);
   --accent-soft: rgba(62, 207, 142, 0.14);
   --ring: rgba(62, 207, 142, 0.38);
@@ -354,16 +354,19 @@ p { text-wrap: pretty; }
 }
 
 .brand { display: inline-flex; align-items: center; gap: 0.7rem; flex: none; }
+
+/* Holds the round Prakriti Computer logo. The PNG is already masked to a
+   circle with transparent corners, and the white disc behind it keeps the
+   logo legible on the dark green header and footer alike. */
 .brand__mark {
-  width: 42px; height: 42px;
+  width: 52px; height: 52px;
   flex: none;
-  border-radius: 12px;
-  background: linear-gradient(140deg, var(--forest-700), var(--forest-900));
-  display: grid; place-items: center;
-  color: var(--green-400);
+  border-radius: 50%;
+  overflow: hidden;
+  background: #fff;
   box-shadow: var(--shadow-sm);
 }
-.brand__mark svg { width: 24px; height: 24px; }
+.brand__mark img { width: 100%; height: 100%; object-fit: cover; }
 .brand__text { display: flex; flex-direction: column; line-height: 1.15; }
 .brand__name {
   font-family: var(--font-head);
