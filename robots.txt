@@ -1,0 +1,5 @@
+# robots.txt — prakriticomputer.com.np
+User-agent: *
+Allow: /
+
+Sitemap: https://prakriticomputer.com.np/sitemap.xml

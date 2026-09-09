@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page Not Found — Prakriti Computer</title>
+<meta name="description" content="The page you were looking for could not be found. Return to the Prakriti Computer homepage or call 023-566458.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b2540">
+
+<link rel="icon" type="image/svg+xml" href="/assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+
+<script>
+  (function () {
+    document.documentElement.classList.add("js");
+    try {
+      var t = localStorage.getItem("pc-theme");
+      if (!t) t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  })();
+</script>
+
+<style>
+  .oops { min-height: 78vh; display: grid; place-items: center; text-align: center; }
+  .oops__code {
+    font-family: var(--font-head);
+    font-size: clamp(4.5rem, 18vw, 9rem);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    background: linear-gradient(120deg, var(--navy-700), var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .oops p { color: var(--text-muted); max-width: 34rem; margin-inline: auto; margin-top: 1rem; }
+  .oops .btn-row { justify-content: center; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand" href="/index.html">
+      <span class="brand__mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/><path d="M7 8h4"/><path d="M7 12h2"/></svg>
+      </span>
+      <span class="brand__text">
+        <span class="brand__name">Prakriti Computer</span>
+        <span class="brand__tag">Sales &middot; Service &middot; Support</span>
+      </span>
+    </a>
+    <div class="nav__actions">
+      <a class="btn btn--sm" href="/index.html">Back to home</a>
+    </div>
+  </div>
+</header>
+
+<main class="oops">
+  <div class="container">
+    <div class="oops__code">404</div>
+    <h1>This page has gone missing</h1>
+    <p>
+      The link may be old, or the address slightly mistyped. Everything is still here —
+      start again from the homepage, or just give us a call.
+    </p>
+    <div class="btn-row">
+      <a class="btn" href="/index.html">Go to homepage</a>
+      <a class="btn btn--ghost" href="/services.html">Browse services</a>
+      <a class="btn btn--ghost" href="tel:+97723566458">Call 023-566458</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__bottom" style="border-top:0">
+      <p>&copy; <span data-year>2026</span> Prakriti Computer. All rights reserved.</p>
+      <nav aria-label="Footer secondary">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/services.html">Services</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js" defer></script>
+</body>
+</html>
