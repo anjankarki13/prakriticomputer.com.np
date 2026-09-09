@@ -11,7 +11,7 @@ step, no framework, no database. Upload the files and the site is live.
 | --------------- | ---------------------------------------------------------------- |
 | `index.html`    | Home — intro, phone numbers, service overview, how we work, FAQ  |
 | `about.html`    | About Us — story, values, service area                            |
-| `services.html` | Services — all 12 services in detail                              |
+| `services.html` | Services — all 11 services in detail                              |
 | `contact.html`  | Contact — phone numbers, hours, enquiry form, map, social links   |
 | `404.html`      | Shown when a visitor hits a wrong address                         |
 
@@ -24,55 +24,45 @@ Supporting files: `assets/css/style.css`, `assets/js/main.js`, `assets/img/`,
 
 These are the only placeholders in the site. Everything else is finished.
 
-### 1. Social media links  ← **important**
+### 1. Facebook and TikTok links  ← **still guessed**
 
-The three social links use guessed addresses. Replace them with your real profile URLs.
-They appear in the top bar, the footer and (on the contact page) the "Follow us" card of
-**every** page, plus the `sameAs` list in the structured data on `index.html`.
+LinkedIn is now correct. Facebook and TikTok still point at invented addresses and will 404 for
+anyone who clicks them. Replace them across all `.html` files:
 
-Search and replace across all `.html` files:
+| Replace this                               | With your real link |
+| ------------------------------------------ | ------------------- |
+| `https://www.facebook.com/prakriticomputer` | your Facebook page  |
+| `https://www.tiktok.com/@prakriticomputer`  | your TikTok account |
 
-| Replace this                                          | With your real link |
-| ----------------------------------------------------- | ------------------- |
-| `https://www.facebook.com/prakriticomputer`           | your Facebook page  |
-| `https://www.tiktok.com/@prakriticomputer`            | your TikTok account |
-| `https://www.linkedin.com/company/prakriticomputer`   | your LinkedIn page  |
+In VS Code: `Ctrl+Shift+F` to find, `Ctrl+Shift+H` to replace in all files.
 
-In VS Code: `Ctrl+Shift+F`, type the old link, `Ctrl+Shift+H` to replace in all files.
+### 2. Shop address and map — done
 
-### 2. Shop address — mostly done
+Address, plus code (J5X4+2X Mechinagar), map and coordinates all come from your Google Business
+Profile listing and are live on the site.
 
-The address now reads **"Kakarvitta, Jhapa, Nepal"**, taken from the logo. If you want to add
-the exact tole, ward or landmark, it appears in the footer of every page, in the contact page
-details, and in the `address` block of the structured data in `index.html`.
+### 3. Email — done
 
-### 3. Map location
+The site uses `prakrititechnology@gmail.com` as the primary address, with
+`prakriticomputerkvt@gmail.com` also listed on the contact page.
 
-The map currently searches Google Maps for "Prakriti Computer, Kakarvitta" — which may or may
-not land on your shop. To pin it exactly: in `contact.html` find the `<!-- TODO -->` comment
-above the map, then open Google Maps, search for your shop, choose **Share → Embed a map**,
-and paste the `<iframe>` in place of the existing one.
-
-### 4. Email address
-
-The site uses `info@prakriticomputer.com.np`. Create that mailbox in your hosting control panel,
-or replace it everywhere with the address you actually use (e.g. your Gmail).
-
-### 5. Facts worth checking
+### 4. Facts worth checking
 
 Written as reasonable defaults — correct them if they are wrong:
 
-- **"15+ years serving the community"** in the stat strip (`index.html`, `about.html`)
-- **"5,000+ devices repaired"** in the stat strip (`index.html`, `about.html`)
+- The "5,000+ devices repaired" figure has been **removed** — it was invented and there was no
+  way to verify it. Add a real number if you have one.
+- Years in business is calculated from your opening date (20 Shrawan 2069 BS = 4 August 2012)
+  and updates itself each year, so it never goes stale.
 - **Opening hours** — Sunday to Friday, 9 AM to 7 PM, Saturday closed. These appear in the hero
   card, the footer of every page, the contact page table, the FAQ, and the structured data.
 - **Service descriptions** in `services.html` — reword any that do not match what you offer,
   or delete a whole `<article class="service-block">` block for a service you do not provide.
 
-### 6. WhatsApp number
+### 5. WhatsApp — done
 
-The floating green button and the contact page both use `9801444271`. If WhatsApp is on a
-different number, replace `wa.me/9779801444271` throughout.
+The floating green button and the contact page both open a WhatsApp chat with **9824186811**,
+with a short greeting pre-filled.
 
 ---
 
@@ -116,7 +106,7 @@ and change one line in `contact.html`:
 
 ```html
 <!-- from -->
-<form class="form" id="enquiry-form" data-mailto="info@prakriticomputer.com.np" novalidate>
+<form class="form" id="enquiry-form" data-mailto="prakrititechnology@gmail.com" novalidate>
 
 <!-- to (use the form ID Formspree gives you) -->
 <form class="form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
@@ -154,16 +144,16 @@ All colours, spacing and fonts live as variables at the top of `assets/css/style
 
 ```css
 /* Deep greens — hero, footer, page headers, panels */
---forest-900: #04251a;
---forest-800: #073a28;
---forest-700: #0a5238;
---forest-600: #0e6b4a;
+--forest-900: #0a2914;
+--forest-800: #104121;
+--forest-700: #165a2d;
+--forest-600: #1d7239;
 
 /* Vivid greens — buttons, links, icons, highlights */
---green-700: #0b854a;   /* light theme accent */
---green-600: #0f9d58;
---green-500: #16b364;
---green-400: #3ecf8e;   /* dark theme accent  */
+--green-700: #218339;   /* light theme accent */
+--green-600: #2a9e45;
+--green-500: #34b455;   /* the green from your logo */
+--green-400: #5dd07a;   /* dark theme accent  */
 ```
 
 Change `--forest-*` to restyle the dark areas, `--green-*` for the accents. Keep `--green-700`

@@ -129,6 +129,24 @@
   });
 
   /* ----------------------------------------------------------------------
+     Years in business
+     The shop opened on 20 Shrawan 2069 BS = 4 August 2012 AD. The figure in
+     the HTML is correct as written, so it still reads sensibly without
+     JavaScript; this just keeps it from going stale as years pass.
+     ---------------------------------------------------------------------- */
+  document.querySelectorAll("[data-years-since]").forEach(function (el) {
+    var start = new Date(el.getAttribute("data-years-since"));
+    if (isNaN(start.getTime())) return;
+
+    var now = new Date();
+    var years = now.getFullYear() - start.getFullYear();
+    var monthDiff = now.getMonth() - start.getMonth();
+    if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < start.getDate())) years--;
+
+    if (years > 0) el.textContent = years + "+";
+  });
+
+  /* ----------------------------------------------------------------------
      Enquiry form
      This is a static site, so there is no server to post to. The form
      builds a tidy message and hands it to the visitor's own mail app.
@@ -159,7 +177,7 @@
         "— Sent from prakriticomputer.com.np"
       ].join("\n");
 
-      var to = form.getAttribute("data-mailto") || "info@prakriticomputer.com.np";
+      var to = form.getAttribute("data-mailto") || "prakrititechnology@gmail.com";
       var status = document.getElementById("form-status");
 
       if (status) {
