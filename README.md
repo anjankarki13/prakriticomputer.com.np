@@ -128,12 +128,25 @@ Removing `id="enquiry-form"` disables the mailto script and lets Formspree handl
 ## Editing the design
 
 All colours, spacing and fonts live as variables at the top of `assets/css/style.css`, under
-`:root`. To change the brand green everywhere, edit one line:
+`:root`. The site is green throughout, built from two scales:
 
 ```css
---green-600: #0f9d58;   /* light theme accent */
+/* Deep greens — hero, footer, page headers, panels */
+--forest-900: #04251a;
+--forest-800: #073a28;
+--forest-700: #0a5238;
+--forest-600: #0e6b4a;
+
+/* Vivid greens — buttons, links, icons, highlights */
+--green-700: #0b854a;   /* light theme accent */
+--green-600: #0f9d58;
+--green-500: #16b364;
 --green-400: #3ecf8e;   /* dark theme accent  */
 ```
+
+Change `--forest-*` to restyle the dark areas, `--green-*` for the accents. Keep `--green-700`
+as the light-theme accent if you change it: lighter greens drop below the 4.5:1 contrast ratio
+needed for white button text to stay readable.
 
 The site has a light and dark theme; the toggle is the sun/moon button in the header, and the
 visitor's choice is remembered in their browser.

@@ -17,36 +17,41 @@
    1. Design tokens
    -------------------------------------------------------------------------- */
 :root {
-  /* Brand palette — deep navy + "prakriti" (nature) green */
-  --navy-900: #06182b;
-  --navy-800: #0b2540;
-  --navy-700: #123152;
-  --navy-600: #1b4570;
+  /* Brand palette — "prakriti" means nature, so the whole site is green.
+     forest-*  deep greens for dark surfaces (hero, footer, panels)
+     green-*   vivid greens for accents (buttons, links, icons)
+     --green-700 is the one used for text and buttons on white: it clears
+     the WCAG AA 4.5:1 contrast ratio, which --green-600 does not. */
+  --forest-900: #04251a;
+  --forest-800: #073a28;
+  --forest-700: #0a5238;
+  --forest-600: #0e6b4a;
+  --green-700: #0b854a;
   --green-600: #0f9d58;
   --green-500: #16b364;
   --green-400: #3ecf8e;
 
   /* Semantic — light theme */
   --bg: #ffffff;
-  --bg-soft: #f5f8fb;
-  --bg-sunken: #eef3f8;
+  --bg-soft: #f3faf6;
+  --bg-sunken: #e9f4ee;
   --surface: #ffffff;
-  --surface-2: #f8fafc;
-  --border: #e2e8f0;
-  --border-strong: #cbd5e1;
-  --text: #0f2033;
-  --text-muted: #51677e;
-  --text-faint: #7b8ea5;
-  --brand: var(--navy-800);
-  --accent: var(--green-600);
-  --accent-soft: #e6f7ee;
-  --ring: rgba(15, 157, 88, 0.32);
+  --surface-2: #f7fcf9;
+  --border: #dcebe3;
+  --border-strong: #b9d8c8;
+  --text: #0c2a1e;
+  --text-muted: #4a6b5c;
+  --text-faint: #789987;
+  --brand: var(--forest-800);
+  --accent: var(--green-700);
+  --accent-soft: #e3f6ec;
+  --ring: rgba(11, 133, 74, 0.3);
 
   /* Elevation */
-  --shadow-xs: 0 1px 2px rgba(6, 24, 43, 0.06);
-  --shadow-sm: 0 2px 8px rgba(6, 24, 43, 0.07);
-  --shadow-md: 0 8px 24px rgba(6, 24, 43, 0.09);
-  --shadow-lg: 0 20px 48px rgba(6, 24, 43, 0.14);
+  --shadow-xs: 0 1px 2px rgba(4, 37, 26, 0.06);
+  --shadow-sm: 0 2px 8px rgba(4, 37, 26, 0.08);
+  --shadow-md: 0 8px 24px rgba(4, 37, 26, 0.1);
+  --shadow-lg: 0 20px 48px rgba(4, 37, 26, 0.16);
 
   /* Shape & rhythm */
   --radius-sm: 8px;
@@ -67,17 +72,17 @@
 
 /* Dark theme — set by data-theme="dark" on <html> (see assets/js/main.js) */
 [data-theme="dark"] {
-  --bg: #071624;
-  --bg-soft: #0b1f31;
-  --bg-sunken: #061421;
-  --surface: #0e2436;
-  --surface-2: #122b3f;
-  --border: #1d3b52;
-  --border-strong: #2a5070;
-  --text: #e8f1f8;
-  --text-muted: #a3bacd;
-  --text-faint: #7f99ae;
-  --brand: #0e2436;
+  --bg: #04180f;
+  --bg-soft: #072216;
+  --bg-sunken: #03140c;
+  --surface: #0a2718;
+  --surface-2: #0e3220;
+  --border: #17452e;
+  --border-strong: #235e41;
+  --text: #e6f5ec;
+  --text-muted: #a2c4b1;
+  --text-faint: #7ba38c;
+  --brand: #0a2718;
   --accent: var(--green-400);
   --accent-soft: rgba(62, 207, 142, 0.14);
   --ring: rgba(62, 207, 142, 0.38);
@@ -255,7 +260,7 @@ p { text-wrap: pretty; }
 
 .btn--light {
   --btn-bg: #fff;
-  --btn-fg: var(--navy-900);
+  --btn-fg: var(--forest-900);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
 }
 
@@ -281,7 +286,7 @@ p { text-wrap: pretty; }
    5. Header & navigation
    -------------------------------------------------------------------------- */
 .topbar {
-  background: var(--navy-900);
+  background: var(--forest-900);
   color: #cfe0ef;
   font-size: 0.82rem;
 }
@@ -353,7 +358,7 @@ p { text-wrap: pretty; }
   width: 42px; height: 42px;
   flex: none;
   border-radius: 12px;
-  background: linear-gradient(140deg, var(--navy-700), var(--navy-900));
+  background: linear-gradient(140deg, var(--forest-700), var(--forest-900));
   display: grid; place-items: center;
   color: var(--green-400);
   box-shadow: var(--shadow-sm);
@@ -451,7 +456,7 @@ p { text-wrap: pretty; }
 .hero {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(155deg, var(--navy-900) 0%, var(--navy-800) 45%, var(--navy-700) 100%);
+  background: linear-gradient(155deg, var(--forest-900) 0%, var(--forest-800) 45%, var(--forest-700) 100%);
   color: #fff;
   overflow: hidden;
   padding-block: clamp(3.5rem, 8vw, 6rem) clamp(4rem, 9vw, 7rem);
@@ -471,7 +476,7 @@ p { text-wrap: pretty; }
 .hero::after {
   width: 34rem; height: 34rem;
   bottom: -18rem; left: -12rem;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.22), transparent 65%);
+  background: radial-gradient(circle, rgba(20, 184, 166, 0.2), transparent 65%);
 }
 .hero__grid {
   position: absolute;
@@ -750,7 +755,7 @@ p { text-wrap: pretty; }
 .page-head {
   position: relative;
   isolation: isolate;
-  background: linear-gradient(150deg, var(--navy-900), var(--navy-700));
+  background: linear-gradient(150deg, var(--forest-900), var(--forest-700));
   color: #fff;
   padding-block: clamp(2.75rem, 6vw, 4.5rem);
   overflow: hidden;
@@ -795,7 +800,7 @@ p { text-wrap: pretty; }
   position: relative;
   border-radius: var(--radius-lg);
   padding: clamp(1.6rem, 3.5vw, 2.5rem);
-  background: linear-gradient(150deg, var(--navy-800), var(--navy-700));
+  background: linear-gradient(150deg, var(--forest-800), var(--forest-700));
   color: #fff;
   box-shadow: var(--shadow-md);
   overflow: hidden;
@@ -1036,7 +1041,7 @@ p { text-wrap: pretty; }
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(120deg, var(--navy-900), var(--navy-700) 65%, var(--green-600) 200%);
+  background: linear-gradient(120deg, var(--forest-900), var(--forest-700) 65%, var(--green-600) 200%);
   color: #fff;
   border-radius: var(--radius-lg);
   padding: clamp(2.25rem, 5vw, 3.5rem);
@@ -1063,7 +1068,7 @@ p { text-wrap: pretty; }
    15. Footer
    -------------------------------------------------------------------------- */
 .site-footer {
-  background: var(--navy-900);
+  background: var(--forest-900);
   color: #a9c2d6;
   padding-top: clamp(3rem, 6vw, 4.5rem);
 }
