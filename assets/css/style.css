@@ -492,16 +492,48 @@ p { text-wrap: pretty; }
   bottom: -18rem; left: -12rem;
   background: radial-gradient(circle, var(--band-glow-b), transparent 65%);
 }
-.hero__grid {
+/* Shopfront signboard used as the hero backdrop. It is blurred and washed over
+   so it reads as texture rather than a second headline competing with the h1. */
+.hero__bg {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  background-image:
-    linear-gradient(var(--band-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--band-line) 1px, transparent 1px);
-  background-size: 62px 62px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 20%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, #000 20%, transparent 78%);
+  z-index: -2;
+  overflow: hidden;
+}
+.hero__bg::before {
+  content: "";
+  position: absolute;
+  inset: -5%;
+  background: url("../img/banner.jpg") center / cover no-repeat;
+  filter: blur(3px) saturate(1.04);
+}
+.hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to bottom,
+      transparent 45%,
+      color-mix(in srgb, var(--band-2) 88%, transparent) 100%
+    ),
+    linear-gradient(
+      100deg,
+      var(--band) 0%,
+      color-mix(in srgb, var(--band) 96%, transparent) 32%,
+      color-mix(in srgb, var(--band) 84%, transparent) 60%,
+      color-mix(in srgb, var(--band-2) 74%, transparent) 100%
+    );
+}
+@media (max-width: 940px) {
+  .hero__bg::after {
+    background: linear-gradient(
+      178deg,
+      color-mix(in srgb, var(--band) 93%, transparent) 0%,
+      color-mix(in srgb, var(--band) 91%, transparent) 50%,
+      color-mix(in srgb, var(--band-2) 93%, transparent) 100%
+    );
+  }
 }
 
 .hero__inner {
@@ -633,6 +665,23 @@ p { text-wrap: pretty; }
   color: var(--text);
   letter-spacing: 0.01em;
 }
+
+/* Row that carries both mobile numbers under one label */
+.phone-item--multi:hover {
+  background: var(--bg-soft);
+  border-color: var(--border);
+  transform: none;
+}
+.phone-item__nums {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.1rem 0.5rem;
+}
+.phone-item__sep { color: var(--text-faint); }
+a.phone-item__num { transition: color 0.18s; }
+a.phone-item__num:hover,
+a.phone-item__num:focus-visible { color: var(--accent); }
 .call-card__note {
   margin-top: 1.25rem;
   padding-top: 1.1rem;
@@ -882,6 +931,46 @@ p { text-wrap: pretty; }
   .service-block { grid-template-columns: 1fr; }
 }
 
+/* Dealer strip — sits under the services grid on the home page */
+.dealer {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1.1rem, 2.5vw, 1.9rem);
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  padding: clamp(1.35rem, 2.6vw, 1.85rem);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--accent) 32%, var(--border));
+  box-shadow: var(--shadow-sm);
+}
+.dealer__icon {
+  width: 58px; height: 58px;
+  flex: none;
+  border-radius: 16px;
+  display: grid; place-items: center;
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+.dealer__icon svg { width: 27px; height: 27px; }
+.dealer__body .eyebrow { margin-bottom: 0.6rem; }
+.dealer__body h3 { margin-bottom: 0.45rem; }
+.dealer__body p { color: var(--text-muted); font-size: 0.945rem; max-width: 46rem; }
+.dealer__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex: none;
+}
+.dealer__actions .btn { justify-content: center; }
+@media (max-width: 900px) {
+  .dealer { grid-template-columns: auto minmax(0, 1fr); }
+  .dealer__actions { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
+}
+@media (max-width: 520px) {
+  .dealer { grid-template-columns: 1fr; }
+}
+
 /* --------------------------------------------------------------------------
    12. Contact page
    -------------------------------------------------------------------------- */
@@ -1008,29 +1097,6 @@ p { text-wrap: pretty; }
   line-height: 0;
 }
 .map-embed iframe { width: 100%; height: 420px; border: 0; }
-
-/* --------------------------------------------------------------------------
-   12b. Shopfront banner
-   The signboard artwork, cropped out of the design mockup.
-   -------------------------------------------------------------------------- */
-.banner {
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
-  background: var(--surface);
-  line-height: 0;
-  max-width: 62rem;
-  margin-inline: auto;
-}
-.banner img { width: 100%; height: auto; }
-
-.banner-caption {
-  text-align: center;
-  margin-top: 1.1rem;
-  font-size: 0.875rem;
-  color: var(--text-faint);
-}
 
 /* --------------------------------------------------------------------------
    13. FAQ
@@ -1230,7 +1296,7 @@ p { text-wrap: pretty; }
    18. Print
    -------------------------------------------------------------------------- */
 @media print {
-  .site-header, .topbar, .fab-stack, .cta-band, .btn-row, .map-embed { display: none !important; }
+  .site-header, .topbar, .fab-stack, .cta-band, .btn-row, .map-embed, .hero__bg { display: none !important; }
   body { color: #000; background: #fff; }
   .hero, .page-head, .site-footer { background: #fff !important; color: #000 !important; }
   .hero h1, .page-head h1, .hero__text, .page-head p, .site-footer .brand__name { color: #000 !important; }
