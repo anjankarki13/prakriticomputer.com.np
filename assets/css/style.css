@@ -1036,6 +1036,22 @@ a.phone-item__num:focus-visible { color: var(--accent); }
   margin-top: 0.25rem;
 }
 
+/* Both mobile numbers sit on one line under a single label */
+.info-row__nums {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.1rem 0.55rem;
+}
+.info-row__nums a { display: inline; }
+.info-row__sep { color: var(--text-faint); }
+.info-row__body small a {
+  display: inline;
+  font-size: inherit;
+  font-weight: 550;
+  color: var(--accent);
+}
+
 .hours { list-style: none; padding: 0; margin: 0; }
 .hours li {
   display: flex;
